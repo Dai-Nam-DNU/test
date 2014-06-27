@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <conio.h>
+#include <string.h>
+
+void wordMaxlen(char* str)
+{
+    int maxlen=0,maxpos,cletter=0,str_len=strlen(str) ;
+    for (int i=0;i<str_len+1;i++)
+    {//Duyet n+1 lan de xu ly truong hop tu cuoi cung
+        if (str[i] != ' '&& str[i] != '\t' && i<str_len)
+        {
+            cletter++;
+        }
+        else
+        {
+            if (cletter > maxlen)
+            {//Luu lai cuc dai vua tim thay
+                maxlen = cletter;
+                maxpos = i - cletter;
+            }
+            cletter = 0;
+        }
+    }
+    //In ket qua
+    printf("\nXau ban dau: %s",str);
+    printf("\nTu co do dai lon nhat la: ");
+    for (int i=0;i<maxlen;i++)
+    {
+        printf("%c",str[maxpos+i]);
+    }
+}
+int main()
+{
+    char str[]="Hello, Can you test my code ?";
+    wordMaxlen(str);
+    getch();
+}
